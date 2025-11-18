@@ -1,8 +1,8 @@
-import { createBrowserRouter } from 'react-router';
+import { createHashRouter } from 'react-router';
 import { Home } from '../home/pages/Home';
 import { Uno } from '../game/pages/Uno';
 
-export const appRouter = createBrowserRouter([
+export const appRouter = createHashRouter([
   {
     path: '/',
     element: <Home />,
