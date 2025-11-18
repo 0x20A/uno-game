@@ -1,5 +1,8 @@
 import { useReducer, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router';
+
+import { shuffle } from 'lodash';
+
 import bg from '../../assets/Game-bg.png';
 import type {
   Card,
@@ -167,15 +170,7 @@ export const Uno = () => {
   };
 
   const shuffleBaraja = (cartas: Card[]): Card[] => {
-    const mezcla = [...cartas];
-
-    for (let i = mezcla.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-
-      [mezcla[i], mezcla[j]] = [mezcla[j], mezcla[i]];
-    }
-
-    return mezcla;
+    return shuffle([...cartas]);
   };
 
   const iniciarJuego = () => {
@@ -395,6 +390,15 @@ export const Uno = () => {
       <div className='w-full max-w-6xl flex justify-center items-center mt-4'>
         <div className='bg-blue-600 rounded-lg px-8 py-4 shadow-lg'>
           <p className='text-2xl font-bold text-white'>{mensajeJuego}</p>
+        </div>
+
+        <div className='ml-10 '>
+          <button
+            className='text-white text-2xl font-bold cursor-pointer transition hover:scale-105 active:scale-100 bg-red-700 rounded-lg px-8 py-4 shadow-lg'
+            onClick={() => iniciarJuego()}
+          >
+            Reiniciar
+          </button>
         </div>
       </div>
 
